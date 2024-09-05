@@ -1,0 +1,151 @@
+.main-content.blurred {
+    filter: blur(20px);
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.674);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group label {
+    display: block;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .but {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .login-form {
+      padding: 10px;
+    }
+  }
+  
+  
+  .login-form {
+    position: relative;
+    /* other styles */
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* other styles */
+
+  
+  .main-content.blurred {
+    filter: blur(10px);
+  }
+  .signup-main{
+    filter: blurr(100px);
+  }
+  .signup-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: fixed;
+      
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(16, 16, 16, 0.5);
+    z-index: 1000;
+    }
+    
+    .signup-form {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.674);
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+    }
+    
+    .input-group label {
+      display: block;
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    
+    .but {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: none;
+      background-color: #337ab7;
+      color: white;
+    }
+    
+    
+    
+    .signup-form {
+      position: relative;
+      /* other styles */
+    }
+    
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    
+    /* other styles */
+    

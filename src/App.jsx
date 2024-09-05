@@ -1,9 +1,12 @@
 import React from 'react'
+import Navbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer'
 
 const App = () => {
   return (
     <div>
-      <h1> this is frontend repo.</h1>
+      <Navbar/>
+      <Footer/>
     </div>
   )
 }

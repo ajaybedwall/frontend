@@ -1,0 +1,107 @@
+.nav-1{
+    display: flex;
+    justify-content: space-between;
+    background-color: green;
+    align-items: center;
+    padding: 0px 20px;
+    color: white;
+}
+.nav-icon{
+    height: 40px;
+    width: 40px;
+}
+.shop-now p{
+    margin: 3px;
+}
+.arrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.navbar {
+    /* background-color: #1a1a1a; */
+    color: #184328;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-left,
+  .navbar-middle {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+  }
+  .search-box {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown{
+    border: none;
+    background-color: #ffffff00;
+    color: white;
+  }
+  .dropdown option{
+    color: black;
+  }
+  .search-input {
+    padding: 10px;
+    padding-right: 40px; /* Space for the icon */
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    width: 200px;
+    cursor: pointer;
+  }
+  
+  .search-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .search-btn img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .navbar-button {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+    gap: 20px;
+  }
+  .navbar-button h2{
+    margin: 0px;
+    color: #184328;
+    
+  }
+  
+  .navbar-button i {
+    margin-right: 5px;
+  }
+  
+  .nav2-search {
+    position: relative;
+    margin-right: 20px;
+  }
+  
+  .nav2-search input {
+    border: none;
+    background-color: #fff;
+    padding: 8px 10px;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .nav2-search i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    cursor: pointer;
+  }

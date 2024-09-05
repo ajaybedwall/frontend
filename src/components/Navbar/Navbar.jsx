@@ -4,6 +4,7 @@ import Trolley from "../../assets/trolley.png";
 import { FaPhone, FaRegUser } from "react-icons/fa6";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -58,7 +59,7 @@ const Navbar = () => {
           <div className="navbar-button">
             <span className="arrow">
               {" "}
-              <FaRegUser /> Account
+              <FaRegUser /> <Link to='/login'>Account</Link> 
             </span>
           </div>
           <div className="navbar-button">

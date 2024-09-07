@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import "./Navbar.css";
 import Trolley from "../../assets/trolley.png";

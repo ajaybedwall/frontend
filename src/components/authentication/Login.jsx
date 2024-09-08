@@ -35,6 +35,20 @@ function LoginPage() {
       setError("Login failed. Please check your credentials and try again.");
     }
   };
+  const googleResponse = async(authResponse)=>{
+try{
+  console.log(authResponse);
+
+}catch(error){
+  console.error('Error while response in google auth code :', error);
+}
+  }
+
+  const GoogleLogin = useGoogleLogin({
+    onError: googleResponse,
+    onSuccess: googleResponse,
+    flow: "auth-code",
+  });
 
   return (
     <div className="login-container">
@@ -66,12 +80,10 @@ function LoginPage() {
             required
           />
         </div>
-        <button type="submit" className="but">
-          Log In
-        </button>
-        <span>
-          Don't have an Account? <Link to="/signup">Sign Up</Link>
-        </span>
+        <button type="submit" className='but'>Log In</button>
+        <p className='or'>OR</p>
+        <button className='but' onClick={GoogleLogin}>Login with Google</button>
+        <span>Don't have a Account <Link to="/signup">SignUp?</Link></span>
       </form>
     </div>
   );

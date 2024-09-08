@@ -80,9 +80,9 @@
   .main-content.blurred {
     filter: blur(10px);
   }
-  .signup-main{
+  /* .signup-main{
     filter: blurr(100px);
-  }
+  } */
   .signup-container {
       display: flex;
       justify-content: center;

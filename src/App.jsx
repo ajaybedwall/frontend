@@ -7,6 +7,9 @@ import LoginPage from "./components/authentication/Login";
 import Home from "./components/Home/Home";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import {GoogleOAuthProvider} from '@react-oauth/google'
+import Category from "./components/category/Category";
+import HomeDes from "./components/Navbar/Homedes";
+// import Cards from "./components/Cards/Card";
 const App = () => {
 
   const GoogleAuthWrapper =()=>{
@@ -20,6 +23,9 @@ const App = () => {
     <div>
       <Router>
         <Navbar />
+        <HomeDes/>
+        <Category/>
+        {/* <Cards/> */}
         <Routes>
           <Route
             path="/"

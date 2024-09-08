@@ -7,7 +7,7 @@ function SignupPage() {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    navigate('/'); // Go back to the previous page
+    navigate('/'); 
   };
 
   return (

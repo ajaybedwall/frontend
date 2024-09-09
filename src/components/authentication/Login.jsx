@@ -1,48 +1,60 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { useGoogleLogin } from "@react-oauth/google";
+import { handleError, handleSuccess } from "./utils";
+import "react-toastify/dist/ReactToastify.css";
 import "./AuthPage.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
-  const handleClose = () => {
-    navigate("/");
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginInfo((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    const { email, password } = loginInfo;
+
+    if (!email || !password) {
+      return handleError("Email and password are required");
+    }
 
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
+      const url = "http://localhost:3000/auth/login";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginInfo),
       });
 
-      const { jwtToken, message, success } = response.data;
+      const result = await response.json();
+      const { success, message, jwtToken, name, error } = result;
 
       if (success) {
+        handleSuccess(message);
         localStorage.setItem("token", jwtToken);
-        navigate("/dashboard");
+        localStorage.setItem("loggedInUser", name);
+        setTimeout(() => navigate("/"), 1000);
       } else {
-        setError(message);
+        handleError(error?.details?.[0]?.message || message || "Login failed");
       }
-    } catch (error) {
-      setError("Login failed. Please check your credentials and try again.");
+    } catch (err) {
+      handleError("Login failed. Please check your credentials and try again.");
     }
   };
-  const googleResponse = async(authResponse)=>{
-try{
-  console.log(authResponse);
 
-}catch(error){
-  console.error('Error while response in google auth code :', error);
-}
-  }
+  const googleResponse = async (authResponse) => {
+    try {
+      // Handle Google login response and send it to the server
+    } catch (error) {
+      console.error("Error during Google authentication:", error);
+    }
+  };
 
   const GoogleLogin = useGoogleLogin({
     onError: googleResponse,
@@ -52,39 +64,59 @@ try{
 
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <button type="button" className="close-button" onClick={handleClose}>
+      <form className="login-form" onSubmit={handleLogin}>
+        <button
+          type="button"
+          className="close-button"
+          onClick={() => navigate("/")}
+        >
           ×
         </button>
         <h2>Login</h2>
         {error && <p className="error-message">{error}</p>}
+
         <div className="input-group">
           <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={loginInfo.email}
+            onChange={handleChange}
+            placeholder="Enter your email..."
             required
           />
         </div>
+
         <div className="input-group">
           <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={loginInfo.password}
+            onChange={handleChange}
+            placeholder="Enter your password..."
             required
           />
         </div>
-        <button type="submit" className='but'>Log In</button>
-        <p className='or'>OR</p>
-        <button className='but' onClick={GoogleLogin}>Login with Google</button>
-        <span>Don't have a Account <Link to="/signup">SignUp?</Link></span>
+
+        <button type="submit" className="but">
+          Log In
+        </button>
+
+        <p className="or">OR</p>
+
+        <button className="but" onClick={GoogleLogin}>
+          Login with Google
+        </button>
+
+        <p>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
       </form>
+
+      <ToastContainer />
     </div>
   );
 }

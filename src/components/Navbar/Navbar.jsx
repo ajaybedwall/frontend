@@ -28,6 +28,7 @@ const Navbar = () => {
       setUserName(loggedInUser);
     }
   }, []);
+  console.log("ajay");
 
   const handleLogout = () => {
     localStorage.removeItem("token");

@@ -1,107 +1,196 @@
-.nav-1{
+/* Base styling for larger screens */
+.nav-1 {
     display: flex;
     justify-content: space-between;
     background-color: green;
     align-items: center;
-    padding: 0px 20px;
+    padding: 5px 20px;
     color: white;
 }
-.nav-icon{
+
+.nav-icon {
     height: 40px;
     width: 40px;
 }
-.shop-now p{
-    margin: 3px;
+
+.shop-now p {
+   font-size: auto;
 }
-.arrow{
+
+.arrow {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
 }
+
 .navbar {
-    /* background-color: #1a1a1a; */
     color: #184328;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .navbar-left,
-  .navbar-middle {
+}
+
+.navbar-left,
+.navbar-middle {
     display: flex;
     align-items: center;
     gap: 2vw;
-  }
-  .search-box {
+}
+
+.navbar-middle {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.search-box {
     position: relative;
     display: inline-block;
-  }
-  .dropdown{
+}
+
+.dropdown {
     border: none;
-    background-color: #ffffff00;
+    background-color: transparent;
     color: white;
-  }
-  .dropdown option{
+}
+
+.dropdown option {
     color: black;
-  }
-  .search-input {
+}
+
+.search-input {
     padding: 10px;
-    padding-right: 40px; /* Space for the icon */
+    padding-right: 40px;
     border: 1px solid #ccc;
     border-radius: 20px;
     font-size: 16px;
     width: 200px;
     cursor: pointer;
-  }
-  
-  .search-btn {
+}
+
+.search-btn {
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
-  }
-  
-  .search-btn img {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .navbar-button {
+    
+}
+
+/* Navbar Buttons */
+.navbar-button {
     display: flex;
     align-items: center;
     margin-right: 20px;
     cursor: pointer;
     gap: 20px;
-  }
-  .navbar-button h2{
-    margin: 0px;
-    color: #184328;
-    
-  }
-  
-  .navbar-button i {
-    margin-right: 5px;
-  }
-  
-  .nav2-search {
-    position: relative;
-    margin-right: 20px;
-  }
-  
-  .nav2-search input {
-    border: none;
-    background-color: #fff;
-    padding: 8px 10px;
-    border-radius: 5px;
-    outline: none;
-  }
-  
-  .nav2-search i {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 10px;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Hidden off-screen initially */
+    width: 300px;
+    height: 100%;
+    background-color: #1a3d33;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar-header h2 {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    font-size: 1.8rem;
+    color: white;
     cursor: pointer;
   }
+
+  /* Navbar.css */
+
+/* Container for the dropdown */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown button styles */
+.dropdown-container .arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dropdown-container .arrow:hover {
+  background-color: #f1f1f1;
+  border-color: #bbb;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Show the dropdown menu on hover */
+.dropdown-container:hover .dropdown-content,
+.dropdown-container:focus-within .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dropdown item styling */
+.dropdown-content a,
+.dropdown-content button {
+  color: #333;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+  background-color: #f4f4f4;
+  color: #000;
+}

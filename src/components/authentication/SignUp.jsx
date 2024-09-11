@@ -1,74 +1,117 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./AuthPage.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+import { handleSuccess, handleError } from "./utils";
 
 function SignupPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [signupInfo, setSignupInfo] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState("");
 
-  const handleClose = () => {
-    navigate('/'); 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSignupInfo((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, email, password } = signupInfo;
+
+    if (!name || !email || !password) {
+      return handleError("Username, email, and password are required");
+    }
+
+    try {
+      const url = "http://localhost:3000/auth/signup";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(signupInfo),
+      });
+      const result = await response.json();
+      const { success, message, error } = result;
+
+      if (success) {
+        handleSuccess("Signup successful! Redirecting to login...");
+        setTimeout(() => navigate("/login"), 1000);
+      } else {
+        handleError(error?.details?.[0]?.message || message || "Signup failed");
+      }
+    } catch (err) {
+      handleError("Signup failed");
+    }
   };
 
   return (
     <div className="signup-main">
       <div className="signup-container">
         <form className="signup-form" onSubmit={handleSubmit}>
-          <button type="button" className="close-button" onClick={handleClose}>
+          <button
+            type="button"
+            className="close-button"
+            onClick={() => navigate("/")}
+          >
             ×
           </button>
           <h2>Sign Up</h2>
           {error && <p className="error-message">{error}</p>}
+
           <div className="input-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="name">Name</label>
             <input
+              onChange={handleChange}
               type="text"
-              id="username"
-              name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              name="name"
+              autoFocus
+              placeholder="Enter your name..."
+              value={signupInfo.name}
               required
             />
           </div>
+
           <div className="input-group">
             <label htmlFor="email">Email</label>
             <input
+              onChange={handleChange}
               type="email"
-              id="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email..."
+              value={signupInfo.email}
               required
             />
           </div>
+
           <div className="input-group">
             <label htmlFor="password">Password</label>
             <input
+              onChange={handleChange}
               type="password"
-              id="password"
               name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password..."
+              value={signupInfo.password}
               required
             />
           </div>
+
           <button type="submit" className="but">
             Sign Up
           </button>
+
           <p>
             Already have an account? <Link to="/login">Login</Link>
           </p>
         </form>
+
+        <ToastContainer />
       </div>
     </div>
   );
 }
 
 export default SignupPage;
-
-

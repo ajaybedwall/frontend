@@ -1,0 +1,241 @@
+.homeDesWrapper {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-family: Arial, sans-serif;
+    background: #175c2361; /* Background color */
+    margin: 0;
+  }
+  
+  /* Circle animations for the ripple effect */
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3); /* Lighter color for better visibility */
+    animation: ripple 8s infinite;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6);
+  }
+  
+  .small {
+    width: 200px;
+    height: 200px;
+    left: -100px;
+    bottom: -100px;
+  }
+  
+  .medium {
+    width: 400px;
+    height: 400px;
+    left: -200px;
+    bottom: -200px;
+  }
+  
+  .large {
+    width: 600px;
+    height: 600px;
+    left: -300px;
+    bottom: -300px;
+  }
+  
+  .xlarge {
+    width: 1000px;
+    height: 1000px;
+    left: -500px;
+    bottom: -500px;
+  }
+  
+  .xxlarge {
+    width: 1300px;
+    height: 1300px;
+    left: -600px;
+    bottom: -600px;
+  }
+  
+  .shade1 {
+    opacity: 0.3;
+    background: rgba(43, 161, 43, 0.21); /* Red tint */
+  }
+  
+  .shade2 {
+    opacity: 0.5;
+    background: rgba(0, 255, 0, 0.215); /* Green tint */
+  }
+  
+  .shade3 {
+    opacity: 0.7;
+    background: rgba(58, 209, 159, 0.263); /* Blue tint */
+  }
+  
+  .shade4 {
+    opacity: 0.8;
+    background: rgba(57, 170, 136, 0.3); /* Yellow tint */
+  }
+  
+  .shade5 {
+    opacity: 0.9;
+    background: rgba(21, 81, 34, 0.194); /* Magenta tint */
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0.8);
+    }
+  
+    50% {
+      transform: scale(1.2);
+    }
+  
+    100% {
+      transform: scale(0.8);
+    }
+  }
+  
+  /* Container for the entire HomeDes section */
+  .homeDesContainer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background-color: transparent;
+  }
+  
+  /* Styling for the content (text and button) */
+  .homeDesContent {
+    max-width: 50%;
+    flex-basis: 50%;
+    color: rgb(28, 74, 29);; /* White text for better contrast */
+  }
+  
+  .homeDesH1 {
+    font-size: 3rem;
+    color: rgb(28, 74, 29); /* White text */
+    margin-bottom: 20px;
+  }
+  
+  .homeDesContent p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .homeDesContent button {
+    padding: 12px 24px;
+    background-color: rgb(28, 74, 29); /* Vibrant button color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  
+  .homeDesContent button:hover {
+    background-color: #ff6347; /* Slightly different color on hover */
+  }
+  
+  /* Image container for the products */
+  .homeDesImageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    flex-basis: 50%;
+  }
+  
+  .homeDesImageBox {
+    flex-basis: 45%;
+    max-width: 190px;
+    text-align: center;
+  }
+  
+  .homeDesImageBox img {
+    width: 80%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 50px;
+  }
+  
+  /* Responsive media queries */
+  @media (max-width: 768px) {
+    .homeDesContainer {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .homeDesContent {
+      max-width: 100%;
+      text-align: center;
+    }
+  
+    .homeDesH1 {
+      font-size: 2rem;
+    }
+  
+    .homeDesContent p {
+      font-size: 1rem;
+    }
+  
+    .homeDesImageContainer {
+      gap: 15px;
+    }
+  
+    .homeDesImageBox {
+      flex-basis: 45%;
+      max-width: 100px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .homeDesH1 {
+      font-size: 1.1rem;
+    }
+  
+    .homeDesContent p {
+      font-size: 0.6rem;
+    }
+  
+    .homeDesImageBox {
+      flex-basis: 100%;
+      max-width: 70px;
+    }
+    .small {
+        width: 100px;
+        height: 100px;
+        left: -50px;
+        bottom: -50px;
+      }
+      
+      .medium {
+        width: 200px;
+        height: 200px;
+        left: -100px;
+        bottom: -100px;
+      }
+      
+      .large {
+        width: 400px;
+        height: 400px;
+        left: -150px;
+        bottom: -150px;
+      }
+      
+      .xlarge {
+        width: 600px;
+        height: 600px;
+        left: -250px;
+        bottom: -250px;
+      }
+      
+      .xxlarge {
+        width: 800px;
+        height: 800px;
+        left: -300px;
+        bottom: -300px;
+      }
+  }
+  

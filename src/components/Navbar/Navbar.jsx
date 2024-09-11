@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "./Navbar.css";
 import Trolley from "../../assets/trolley.png";
-import { FaPhone, FaRegUser } from "react-icons/fa";
+import {FaRegUser, FaShoppingCart, FaBars, FaTimes,} from "react-icons/fa";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  FaShoppingCart,
-  FaBars,
-  FaTimes,
-} from "react-icons/fa";
-
-
-
+import { FaPhone } from "react-icons/fa6";
+import { Link,useNavigate } from "react-router-dom";
+// import { , FaRegUser } from "react-icons/fa";
+// import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
+// import { Link, useNavigate } from "react-router-dom";
+// import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
@@ -58,6 +55,7 @@ const Navbar = () => {
           </select>
         </div>
       </div>
+
       <div className="navbar">
         <div className="navbar-left">
           <div className="navbar-button">
@@ -65,21 +63,38 @@ const Navbar = () => {
             ShopCart
           </div>
         </div>
+
         <div className="navbar-middle">
-          <div className="nav2-search">
-            <div className="search-box">
-              <input
-                type={isSearchActive ? "text" : "hidden"}
-                className="search-input"
-                placeholder="Search..."
-              />
-              <IoIosSearch
-                className="search-btn"
-                onClick={() => setIsSearchActive(!isSearchActive)}
-              />
-            </div>
+          <div className="">
+            {" "}
+            Categories
+            <i>
+              <IoIosArrowDown />
+            </i>
           </div>
-          {isLoggedIn ? (
+          <div className="">Deals</div>
+          <div className="">What&apos; New</div>
+          <div className="">Delivery</div>
+        </div>
+
+        <div className="navbar-right">
+          <div className="search-box">
+            <input
+              type={isSearchActive ? "text" : "hidden"}
+              className="search-input"
+              placeholder="Search..."
+            />
+            <IoIosSearch
+              className="search-btn"
+              onClick={() => setIsSearchActive(!isSearchActive)}
+            />
+          </div>
+          <div className="">
+            <span className="arrow">
+              <FaRegUser /> <Link to="/login">Account</Link>
+            </span>
+          </div>
+          <div className=""> {isLoggedIn ? (
             <div className="navbar-button dropdown-container">
               <span className="arrow">
                 <FaRegUser /> {userName} <IoIosArrowDown />
@@ -88,30 +103,28 @@ const Navbar = () => {
                 <Link to="/profile">
                   <button className="dropdown-item">Profile</button>
                 </Link>
-                <button className="dropdown-item" onClick={handleLogout}>
-                     Logout
+                <button className="dropdown-item" onClick={handleLogout}> Logout
                 </button>
               </div>
             </div>
           ) : (
             <div className="navbar-button">
-              <span className="arrow">
-                <FaRegUser /> <Link to="/login">Account</Link>
-              </span>
+              
             </div>
           )}
-          <div className="navbar-button">
             <span className="arrow">
               <FaShoppingCart /> Cart
             </span>
           </div>
-          <div className="hamburger" onClick={() => setIsSidebarOpen(true)}>
-            <FaBars />
-          </div>
+        </div>
+
+        {/* Hamburger Icon */}
+        <div className="hamburger" onClick={() => setIsSidebarOpen(true)}>
+          <FaBars />
         </div>
       </div>
 
-     
+      {/* Sidebar Menu */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <h2>Menu</h2>
@@ -122,10 +135,14 @@ const Navbar = () => {
         </div>
         <div className="sidebar-content">
           <div className="sidebar-button">
-            <IoIosArrowDown /> Categories
+            {" "}
+            Categories
+            <i>
+              <IoIosArrowDown />
+            </i>
           </div>
           <div className="sidebar-button">Deals</div>
-          <div className="sidebar-button">What's New</div>
+          <div className="sidebar-button">What&apos; New</div>
           <div className="sidebar-button">Delivery</div>
           <div className="sidebar-button">
             <FaRegUser /> <Link to="/login">Account</Link>
@@ -133,7 +150,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      
+      {/* Overlay */}
       {isSidebarOpen && (
         <div className="overlay" onClick={() => setIsSidebarOpen(false)}></div>
       )}

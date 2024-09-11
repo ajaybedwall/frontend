@@ -5,6 +5,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { handleError, handleSuccess } from "./utils";
 import "react-toastify/dist/ReactToastify.css";
 import "./AuthPage.css";
+import axios from "axios";
 
 function LoginPage() {
   const navigate = useNavigate();

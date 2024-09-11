@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -5,7 +8,6 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { handleError, handleSuccess } from "./utils";
 import "react-toastify/dist/ReactToastify.css";
 import "./AuthPage.css";
-import axios from "axios";
 
 function LoginPage() {
   const navigate = useNavigate();

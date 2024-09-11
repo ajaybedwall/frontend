@@ -1,20 +1,21 @@
-import  { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import Trolley from "../../assets/trolley.png";
-import {FaRegUser, FaShoppingCart, FaBars, FaTimes,} from "react-icons/fa";
-import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
+import { FaRegUser } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
-import { Link,useNavigate } from "react-router-dom";
-// import { , FaRegUser } from "react-icons/fa";
-// import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
-// import { Link, useNavigate } from "react-router-dom";
-// import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
+import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import Cart from "../Cards/Card"; 
+
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
-    const [isSearchActive, setIsSearchActive] = useState(false);
+  const [isSearchActive, setIsSearchActive] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -24,14 +25,32 @@ const Navbar = () => {
       setIsLoggedIn(true);
       setUserName(loggedInUser);
     }
+
+    // Sticky navbar logic
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
-  console.log("ajay");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("loggedInUser");
     setIsLoggedIn(false);
     navigate("/login");
+  };
+
+  const handleCartClick = () => {
+    setIsCartOpen(!isCartOpen); // Toggle cart visibility
   };
 
   return (
@@ -55,46 +74,44 @@ const Navbar = () => {
           </select>
         </div>
       </div>
-
-      <div className="navbar">
+      {/* Sticky navbar */}
+      <div className={`navbar ${isSticky ? "sticky" : ""}`}>
         <div className="navbar-left">
           <div className="navbar-button">
             <img src={Trolley} alt="icon" className="nav-icon" />
             ShopCart
           </div>
         </div>
-
         <div className="navbar-middle">
-          <div className="">
-            {" "}
-            Categories
-            <i>
-              <IoIosArrowDown />
-            </i>
+          <div className="menu-items">
+            <Link to="/categories" className="menu-item">
+              Categories
+            </Link>
+            <Link to="/deals" className="menu-item">
+              Deals
+            </Link>
+            <Link to="/whats-new" className="menu-item">
+              What&apos;s New
+            </Link>
+            <Link to="/delivery" className="menu-item">
+              Delivery
+            </Link>
           </div>
-          <div className="">Deals</div>
-          <div className="">What&apos; New</div>
-          <div className="">Delivery</div>
-        </div>
 
-        <div className="navbar-right">
-          <div className="search-box">
-            <input
-              type={isSearchActive ? "text" : "hidden"}
-              className="search-input"
-              placeholder="Search..."
-            />
-            <IoIosSearch
-              className="search-btn"
-              onClick={() => setIsSearchActive(!isSearchActive)}
-            />
+          <div className="nav2-search">
+            <div className="search-box">
+              <input
+                type={isSearchActive ? "text" : "hidden"}
+                className="search-input"
+                placeholder="Search..."
+              />
+              <IoIosSearch
+                className="search-btn"
+                onClick={() => setIsSearchActive(!isSearchActive)}
+              />
+            </div>
           </div>
-          <div className="">
-            <span className="arrow">
-              <FaRegUser /> <Link to="/login">Account</Link>
-            </span>
-          </div>
-          <div className=""> {isLoggedIn ? (
+          {isLoggedIn ? (
             <div className="navbar-button dropdown-container">
               <span className="arrow">
                 <FaRegUser /> {userName} <IoIosArrowDown />
@@ -103,28 +120,32 @@ const Navbar = () => {
                 <Link to="/profile">
                   <button className="dropdown-item">Profile</button>
                 </Link>
-                <button className="dropdown-item" onClick={handleLogout}> Logout
+                <button className="dropdown-item" onClick={handleLogout}>
+                  Logout
                 </button>
               </div>
             </div>
           ) : (
             <div className="navbar-button">
-              
+              <span className="arrow">
+                <FaRegUser /> <Link to="/login">Account</Link>
+              </span>
             </div>
           )}
+
+          {/* Cart Button */}
+          <div className="navbar-button" onClick={handleCartClick}>
             <span className="arrow">
               <FaShoppingCart /> Cart
             </span>
           </div>
-        </div>
 
-        {/* Hamburger Icon */}
-        <div className="hamburger" onClick={() => setIsSidebarOpen(true)}>
-          <FaBars />
+          <div className="hamburger" onClick={() => setIsSidebarOpen(true)}>
+            <FaBars />
+          </div>
         </div>
       </div>
-
-      {/* Sidebar Menu */}
+      {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <h2>Menu</h2>
@@ -135,25 +156,22 @@ const Navbar = () => {
         </div>
         <div className="sidebar-content">
           <div className="sidebar-button">
-            {" "}
-            Categories
-            <i>
-              <IoIosArrowDown />
-            </i>
+            <IoIosArrowDown /> Categories
           </div>
           <div className="sidebar-button">Deals</div>
-          <div className="sidebar-button">What&apos; New</div>
+          <div className="sidebar-button">What&apos;s New</div>
           <div className="sidebar-button">Delivery</div>
           <div className="sidebar-button">
             <FaRegUser /> <Link to="/login">Account</Link>
           </div>
         </div>
       </div>
-
       {/* Overlay */}
       {isSidebarOpen && (
         <div className="overlay" onClick={() => setIsSidebarOpen(false)}></div>
       )}
+      {/* Cart Component */}
+      {isCartOpen && <Cart />} {/* Display cart when isCartOpen is true */}
     </>
   );
 };

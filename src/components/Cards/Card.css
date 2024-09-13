@@ -2,87 +2,90 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  padding: 20px;
 }
 
 .card {
-  border: 1px solid #eee;
+  background-color: #ffffff;
   border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
-  background-color: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
-.card:hover .card-title:hover {
+.card:hover {
   transform: translateY(-5px);
-  cursor: pointer;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
+
+
 
 .card-image img {
   width: 100%;
-  height: auto;
-  border-bottom: 1px solid #eee;
+  height: 100%;
   object-fit: cover;
 }
 
 .card-content {
-  padding: 15px;
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card-title {
-  font-size: 1.1em;
+  font-size: 1.2rem;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
-
 .card-price {
-  color: #333;
-  font-size: 1.1em;
-  margin-bottom: 5px;
+  font-size: 1.1rem;
+  color: #007bff; /* Blue color for price */
+  margin: 0;
 }
 
 .card-description {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 10px;
+  margin-top: 8px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-rating {
+  margin-top: 8px;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  color: #ffc107; /* Yellow color for stars */
 }
 
-.stars {
-  color: #4caf50;
+.card-rating .stars {
   margin-right: 5px;
 }
 
-.reviews {
-  font-size: 0.8em;
-  color: #888;
+.card-rating .reviews {
+  color: #6c757d; /* Gray color for reviews */
 }
 
 .add-to-cart-btn {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #000;
-  color: #fff;
+  margin-top: auto; /* Aligns the button at the bottom of each card */
+  background-color: #28a745; /* Green color for button */
+  color: #ffffff;
   border: none;
+  padding: 8px 16px;
   border-radius: 4px;
-  text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .add-to-cart-btn:hover {
-  background-color: #4caf50;
+  background-color: #218838; /* Darker green color on hover */
 }
 
-/* Pagination */
 .pagination {
   display: flex;
   justify-content: center;
@@ -90,16 +93,229 @@
 }
 
 .pagination-btn {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  color: #333;
-  padding: 5px 10px;
-  margin: 0 5px;
+  background-color: #007bff; /* Blue color for pagination button */
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-btn:hover,
+.pagination-btn.active {
+  background-color: #0056b3; /* Darker blue color on hover or when active */
+}
+
+.loading-spinner,
+.error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust height as needed */
+  font-size: 1.2rem;
+  color: #dc3545; /* Red color for error message */
+}
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-title{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+.c{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-price {
+  font-size: 1.1rem;
+  color: #0b0d10; /* Blue color for price */
+  margin-bottom: 8px;
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  color: #ffc107; /* Yellow color for stars */
+}
+
+.card-rating .stars {
+  margin-right: 5px;
+}
+
+.card-rating .reviews {
+  color: #6c757d; /* Gray color for reviews */
+}
+
+
+
+.add-to-cart-btn {
+  margin-top: auto; /* Aligns the button at the bottom of each card */
+  background-color: #28a745; /* Green color for button */
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #218838; /* Darker green color on hover */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-btn {
+  background-color: #007bff; /* Blue color for pagination button */
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-btn:hover,
+.pagination-btn.active {
+  background-color: #0056b3; /* Darker blue color on hover or when active */
+}
+
+.loading-spinner,
+.error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust height as needed */
+  font-size: 1.2rem;
+  color: #dc3545; /* Red color for error message */
+}
+
+
+
+@property --range-position {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --star-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 48px;
+}
+
+@property --max-rate {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 5;
+}
+
+:root {
+  --bg-svg-star-outlined: url('data:image/svg+xml, <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="%23bf9b30" d="m22 9.24-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"></path></svg>');
+  --bg-svg-star-filled: url('data:image/svg+xml, <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="%23bf9b30" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"></path></svg>');
+}
+
+.rating-wrapper {
+  max-width: max-content;
+  position: relative;
+}
+
+.stars-icons-outlined,
+.stars-icons-filled {
+  display: block;
+  width: calc(var(--max-rate) * var(--star-size));
+  height: var(--star-size);
+  background-size: var(--star-size);
+  background-repeat: repeat-x;
+}
+
+.stars-icons-outlined {
+  background-image: var(--bg-svg-star-outlined);
+}
+
+.stars-icons-filled {
+  position: absolute;
+  background-image: var(--bg-svg-star-filled);
+  width: calc(var(--star-size) * var(--range-position));
+  overflow: hidden;
+  height: var(--star-size);
+  z-index: 1;
+}
+
+.stars-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
   cursor: pointer;
 }
 
-.pagination-btn.active {
-  background-color: #000;
-  color: #fff;
-  border-color: #000;
+.card-price {
+  font-size: 1.1rem;
+  color: #080c0f; /* Main price color */
+  display: flex;
+  font-weight: bold;
+}
+
+.currency-symbol {
+  font-size: 0.7rem; 
+  margin: 2px;
+}
+
+.decimal-part {
+  font-size: 0.8rem; 
+  margin: 2px; 
 }

@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import Trolley from "../../assets/trolley.png";
-import { FaRegUser } from "react-icons/fa";
-import { FaPhone } from "react-icons/fa6";
+import {
+  FaRegUser,
+  FaShoppingCart,
+  FaBars,
+  FaTimes,
+  FaPhone,
+} from "react-icons/fa";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
-import Cart from "../Cards/Card"; 
+import Cart from "../Cards/Card"; // Import Cart Component
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
-  const navigate = useNavigate();
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -51,6 +56,10 @@ const Navbar = () => {
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen); // Toggle cart visibility
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false); // Close the cart
   };
 
   return (
@@ -111,6 +120,7 @@ const Navbar = () => {
               />
             </div>
           </div>
+
           {isLoggedIn ? (
             <div className="navbar-button dropdown-container">
               <span className="arrow">
@@ -171,7 +181,7 @@ const Navbar = () => {
         <div className="overlay" onClick={() => setIsSidebarOpen(false)}></div>
       )}
       {/* Cart Component */}
-      {isCartOpen && <Cart />} {/* Display cart when isCartOpen is true */}
+      {isCartOpen && <Cart items={[]} closeCart={closeCart} />}
     </>
   );
 };

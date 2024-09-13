@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,33 +12,47 @@ import LoginPage from "./components/authentication/Login";
 import Home from "./components/Home/Home";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Category from "./components/category/Category";
-import HomeDes from "./components/Navbar/Homedes";
+import HomeDes from "./components/Navbar/HomeDes";
 import Cards from "./components/Cards/Card";
 import ProductDetail from "./components/ProductDetails/ProductDetail";
-import CategoryCards from "./components/Cards/Categorycards";
-import Cart from "./components/Cards/Cart"; // Import Cart component
+import CategoryCards from "./components/Cards/CategoryCards";
+import Cart from "./components/Cart/Cart"; // Import Cart component
 
 const App = () => {
-  const GoogleAuthWrapper = () => (
-    <GoogleOAuthProvider clientId="773703183001-d44jdgn8e2pk5eo8s464rmj9hecvj6hm.apps.googleusercontent.com">
-      <LoginPage />
-    </GoogleOAuthProvider>
-  );
+  const [cartItems, setCartItems] = useState([]);
+
+  const handleAddToCart = (product) => {
+    setCartItems((prevItems) => [...prevItems, product]);
+  };
+
+  const handleRemoveFromCart = (productId) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.id !== productId)
+    );
+  };
 
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar cartItems={cartItems} />
         <HomeDes />
-        <ConditionalContent />
+        <ConditionalContent onAddToCart={handleAddToCart} />
         <Footer />
+        {/* <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} /> */}
       </div>
     </Router>
   );
 };
 
+// Wrapper for login page with Google OAuth
+const GoogleAuthWrapper = () => (
+  <GoogleOAuthProvider clientId="your-client-id">
+    <LoginPage />
+  </GoogleOAuthProvider>
+);
+
 // Component to handle conditional rendering
-const ConditionalContent = () => {
+const ConditionalContent = ({ onAddToCart }) => {
   const location = useLocation();
   const isProductDetail = location.pathname.startsWith("/Product/");
 
@@ -47,7 +61,7 @@ const ConditionalContent = () => {
       {!isProductDetail && (
         <>
           <Category />
-          <Cards />
+          <Cards onAddToCart={onAddToCart} />
         </>
       )}
       <Routes>
@@ -61,12 +75,5 @@ const ConditionalContent = () => {
     </div>
   );
 };
-
-// Wrapper for login page with Google OAuth
-const GoogleAuthWrapper = () => (
-  <GoogleOAuthProvider clientId="773703183001-d44jdgn8e2pk5eo8s464rmj9hecvj6hm.apps.googleusercontent.com">
-    <LoginPage />
-  </GoogleOAuthProvider>
-);
 
 export default App;

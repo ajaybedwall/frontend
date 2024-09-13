@@ -93,6 +93,8 @@
     align-items: center;
     cursor: pointer;
     gap: 10px;
+    position: relative;
+    bottom: 10px;
 }
 
 .hamburger {

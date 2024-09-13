@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Card.css";
 import { CartContext } from "../context/CartContext"; // CartContext import
 
-const Cards = () => {
+const Cards = ({ onAddToCart }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -33,7 +33,6 @@ const Cards = () => {
     fetchProducts();
   }, []);
 
-  // Get current cards
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = products.slice(indexOfFirstCard, indexOfLastCard);

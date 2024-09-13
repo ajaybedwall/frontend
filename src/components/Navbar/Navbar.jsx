@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from "react";
-import "./Navbar.css";
-import Trolley from "../../assets/trolley.png";
-import { FaRegUser } from "react-icons/fa";
-import { FaPhone } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import {
+  FaRegUser,
+  FaPhone,
+  FaShoppingCart,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
-import Cart from "../Cards/Card"; 
+import Trolley from "../../assets/trolley.png";
+import "./Navbar.css";
+import Cart from "../Cart/Cart"; // Ensure this path is correct
 
-const Navbar = () => {
+const Navbar = ({ cartItems }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
-  const navigate = useNavigate();
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -36,10 +40,7 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleLogout = () => {
@@ -51,6 +52,10 @@ const Navbar = () => {
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen); // Toggle cart visibility
+  };
+
+  const handleCartClose = () => {
+    setIsCartOpen(false);
   };
 
   return (
@@ -74,6 +79,7 @@ const Navbar = () => {
           </select>
         </div>
       </div>
+
       {/* Sticky navbar */}
       <div className={`navbar ${isSticky ? "sticky" : ""}`}>
         <div className="navbar-left">
@@ -111,6 +117,7 @@ const Navbar = () => {
               />
             </div>
           </div>
+
           {isLoggedIn ? (
             <div className="navbar-button dropdown-container">
               <span className="arrow">
@@ -136,7 +143,8 @@ const Navbar = () => {
           {/* Cart Button */}
           <div className="navbar-button" onClick={handleCartClick}>
             <span className="arrow">
-              <FaShoppingCart /> Cart
+              <FaShoppingCart />
+              <Link to={"/cart"}>Cart</Link> ({cartItems.length})
             </span>
           </div>
 
@@ -145,14 +153,12 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
       {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <h2>Menu</h2>
-          <FaTimes
-            onClick={() => setIsSidebarOpen(false)}
-            className="close-btn"
-          />
+          <FaTimes onClick={() => setIsSidebarOpen(false)} className="close-btn" />
         </div>
         <div className="sidebar-content">
           <div className="sidebar-button">
@@ -166,12 +172,14 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
       {/* Overlay */}
       {isSidebarOpen && (
         <div className="overlay" onClick={() => setIsSidebarOpen(false)}></div>
       )}
+
       {/* Cart Component */}
-      {isCartOpen && <Cart />} {/* Display cart when isCartOpen is true */}
+      {isCartOpen && <Cart cartItems={cartItems} onClose={handleCartClose} />}
     </>
   );
 };

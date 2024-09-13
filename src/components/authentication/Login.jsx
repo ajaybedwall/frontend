@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -46,16 +43,19 @@ function LoginPage() {
       } else {
         handleError(error?.details?.[0]?.message || message || "Login failed");
       }
-    } catch (err) {
+    } catch (error) {
       handleError("Login failed. Please check your credentials and try again.");
     }
   };
 
   const googleResponse = async (authResponse) => {
     try {
-      // Handle Google login response and send it to the server
-    } catch (error) {
-      console.error("Error during Google authentication:", error);
+        if(authResponse['code']){
+
+          console.log(authResponse)
+        }
+    } catch (err) {
+      console.error("Error during Google authentication:", err);
     }
   };
 
@@ -87,7 +87,7 @@ function LoginPage() {
             value={loginInfo.email}
             onChange={handleChange}
             placeholder="Enter your email..."
-            required
+            
           />
         </div>
 
@@ -100,7 +100,7 @@ function LoginPage() {
             value={loginInfo.password}
             onChange={handleChange}
             placeholder="Enter your password..."
-            required
+            
           />
         </div>
 

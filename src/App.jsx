@@ -13,7 +13,7 @@ import ProductDetail from "./components/ProductDetails/ProductDetail";
 import CategoryCards from "./components/Cards/Categorycards";
 
 const App = () => {
-  const GoogleAuthWrapper = () => (
+  const GoogleAuthWrappers = () => (
     <GoogleOAuthProvider clientId="773703183001-d44jdgn8e2pk5eo8s464rmj9hecvj6hm.apps.googleusercontent.com">
       <LoginPage />
     </GoogleOAuthProvider>
@@ -45,7 +45,7 @@ const ConditionalContent = () => {
         </>
       )}
       <Routes>
-        <Route path="/login" element={<GoogleAuthWrapper />} />
+        <Route path="/login" element={<GoogleAuthWrapper/>} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Product/:id" element={<ProductDetail />} />

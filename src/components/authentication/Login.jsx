@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 import { useGoogleLogin } from "@react-oauth/google";
 import { handleError, handleSuccess } from "./utils";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import "./AuthPage.css";
+// import { Link } from "react-router-dom";
 import axios from "axios";
+// import { useGoogleLogin } from "@react-oauth/google";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -113,11 +115,11 @@ function LoginPage() {
         </button>
 
         <p>
-          Don't have an account? <Link to="/signup">Sign Up</Link>
+          Don&apos;t have an account? <Link to="/signup">Sign Up</Link>
         </p>
       </form>
 
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 }

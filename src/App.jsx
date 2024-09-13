@@ -16,7 +16,6 @@ import HomeDes from "./components/Navbar/Homedes";
 import Cards from "./components/Cards/Card";
 import ProductDetail from "./components/ProductDetails/ProductDetail";
 import CategoryCards from "./components/Cards/Categorycards";
-import Cart from "./components/Cards/Cart"; // Import Cart component
 
 const App = () => {
   const GoogleAuthWrappers = () => (

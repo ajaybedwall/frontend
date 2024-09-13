@@ -5,9 +5,6 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { handleError, handleSuccess } from "./utils";
 // import "react-toastify/dist/ReactToastify.css";
 import "./AuthPage.css";
-// import { Link } from "react-router-dom";
-import axios from "axios";
-// import { useGoogleLogin } from "@react-oauth/google";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -51,17 +48,31 @@ function LoginPage() {
     }
   };
 
-  const googleResponse = async (authResponse) => {
+  const googleResponse = async (response) => {
     try {
-      // Handle Google login response and send it to the server
+      const url = "http://localhost:3000/auth/google";
+      const result = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken: response.credential }),
+      });
+      const data = await result.json();
+      if (data.success) {
+        handleSuccess(data.message);
+        localStorage.setItem("token", data.jwtToken);
+        localStorage.setItem("loggedInUser", data.name);
+        navigate("/");
+      } else {
+        handleError(data.error || "Google login failed");
+      }
     } catch (error) {
-      console.error("Error during Google authentication:", error);
+      handleError("Error during Google authentication");
     }
   };
 
   const GoogleLogin = useGoogleLogin({
-    onError: googleResponse,
     onSuccess: googleResponse,
+    onError: googleResponse,
     flow: "auth-code",
   });
 

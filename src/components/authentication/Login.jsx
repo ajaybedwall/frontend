@@ -48,20 +48,31 @@ function LoginPage() {
     }
   };
 
-  const googleResponse = async (authResponse) => {
+  const googleResponse = async (response) => {
     try {
-        if(authResponse['code']){
-
-          console.log(authResponse)
-        }
-    } catch (err) {
-      console.error("Error during Google authentication:", err);
+      const url = "http://localhost:3000/auth/google";
+      const result = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken: response.credential }),
+      });
+      const data = await result.json();
+      if (data.success) {
+        handleSuccess(data.message);
+        localStorage.setItem("token", data.jwtToken);
+        localStorage.setItem("loggedInUser", data.name);
+        navigate("/");
+      } else {
+        handleError(data.error || "Google login failed");
+      }
+    } catch (error) {
+      handleError("Error during Google authentication");
     }
   };
 
   const GoogleLogin = useGoogleLogin({
-    onError: googleResponse,
     onSuccess: googleResponse,
+    onError: googleResponse,
     flow: "auth-code",
   });
 

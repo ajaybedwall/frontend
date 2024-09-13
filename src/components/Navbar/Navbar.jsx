@@ -21,6 +21,7 @@ const Navbar = ({ cartItems }) => {
   const [isSticky, setIsSticky] = useState(false);
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     const loggedInUser = localStorage.getItem("loggedInUser");

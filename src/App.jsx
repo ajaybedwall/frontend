@@ -71,6 +71,7 @@ const ConditionalContent = ({ onAddToCart }) => {
         <Route path="/Product/:id" element={<ProductDetail />} />
         <Route path="/Product/category/:category" element={<CategoryCards />} />
       </Routes>
+      {/* <Cart />  */}
     </div>
   );
 };

@@ -43,7 +43,7 @@ function LoginPage() {
       } else {
         handleError(error?.details?.[0]?.message || message || "Login failed");
       }
-    } catch (err) {
+    } catch (error) {
       handleError("Login failed. Please check your credentials and try again.");
     }
   };
@@ -98,7 +98,7 @@ function LoginPage() {
             value={loginInfo.email}
             onChange={handleChange}
             placeholder="Enter your email..."
-            required
+            
           />
         </div>
 
@@ -111,7 +111,7 @@ function LoginPage() {
             value={loginInfo.password}
             onChange={handleChange}
             placeholder="Enter your password..."
-            required
+            
           />
         </div>
 

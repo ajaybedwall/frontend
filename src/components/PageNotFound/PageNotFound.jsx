@@ -1,13 +1,13 @@
-import React from 'react'
+// import React from 'react'
 
-const PageNotFound = () => {
-  return (
-    <div>
-      <h1> 404 Page Not Found</h1>
-      <p>The page you're looking for doesn't exist.</p>
+// const PageNotFound = () => {
+//   return (
+//     <div>
+//       <h1> 404 Page Not Found</h1>
+//       <p>The page you're looking for doesn't exist.</p>
 
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default PageNotFound
+// export default PageNotFound

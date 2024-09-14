@@ -73,11 +73,11 @@
 
 .add-to-cart-btn {
   margin-top: auto; /* Aligns the button at the bottom of each card */
-  background-color: #28a745; /* Green color for button */
+  background-color: white; /* Green color for button */
   color: #ffffff;
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 100px;
+  width: 120px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -85,6 +85,7 @@
 .add-to-cart-btn:hover {
   background-color: #218838; /* Darker green color on hover */
 }
+
 
 .pagination {
   display: flex;
@@ -194,20 +195,8 @@
 
 
 
-.add-to-cart-btn {
-  margin-top: auto; /* Aligns the button at the bottom of each card */
-  background-color: #28a745; /* Green color for button */
-  color: #ffffff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
 
-.add-to-cart-btn:hover {
-  background-color: #218838; /* Darker green color on hover */
-}
+
 
 .pagination {
   display: flex;

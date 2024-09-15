@@ -16,7 +16,6 @@ import HomeDes from "./components/Navbar/HomeDes";
 import Cards from "./components/Cards/Card";
 import ProductDetail from "./components/ProductDetails/ProductDetail";
 import CategoryCards from "./components/Cards/CategoryCards";
-import Cart from "./components/Cart/Cart"; // Import Cart component
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);

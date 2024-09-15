@@ -1,8 +1,7 @@
-// Cards.jsx
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Card.css";
-import { CartContext } from "../context/CartContext"; // CartContext import
+import { CartContext } from "../context/CartContext";
 
 const Cards = ({ onAddToCart }) => {
   const [products, setProducts] = useState([]);
@@ -12,7 +11,7 @@ const Cards = ({ onAddToCart }) => {
   const cardsPerPage = 8;
   const navigate = useNavigate();
 
-  const { addToCart } = useContext(CartContext); // CartContext se addToCart function
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -37,7 +36,6 @@ const Cards = ({ onAddToCart }) => {
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = products.slice(indexOfFirstCard, indexOfLastCard);
 
-  // Pagination controls
   const totalPages = Math.ceil(products.length / cardsPerPage);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -52,9 +50,7 @@ const Cards = ({ onAddToCart }) => {
   }
 
   if (error) {
-    return (
-      <div className="error-message">Oops! Something went wrong: {error}</div>
-    );
+    return <div className="error-message">Oops! Something went wrong: {error}</div>;
   }
 
   return (
@@ -70,17 +66,14 @@ const Cards = ({ onAddToCart }) => {
               <img src={product.thumbnail} alt={product.title} loading="lazy" />
             </div>
             <div className="card-content">
-              <div className="c">
-                <h2 className="card-title">{product.title} </h2>
-                <p className="card-price">
-                  <span className="currency-symbol">$</span>
-                  {Math.floor(product.price)}
-                  <span className="decimal-part">
-                    {product.price.toFixed(2).slice(-3)}
-                  </span>
-                </p>
-              </div>
-
+              <h2 className="card-title">{product.title}</h2>
+              <p className="card-price">
+                <span className="currency-symbol">$</span>
+                {Math.floor(product.price)}
+                <span className="decimal-part">
+                  {product.price.toFixed(2).slice(-3)}
+                </span>
+              </p>
               <p className="card-description">{product.description}</p>
               <div className="card-rating">
                 <span className="stars">
@@ -93,8 +86,9 @@ const Cards = ({ onAddToCart }) => {
               <button
                 className="add-to-cart-btn"
                 onClick={(e) => {
-                  e.stopPropagation(); 
-                  addToCart(product); 
+                  e.stopPropagation();
+                  console.log("Adding to cart: ", product);
+                  addToCart(product);
                 }}
               >
                 Add to Cart
@@ -110,9 +104,7 @@ const Cards = ({ onAddToCart }) => {
           <button
             key={index}
             onClick={() => handlePageChange(index + 1)}
-            className={`pagination-btn ${
-              currentPage === index + 1 ? "active" : ""
-            }`}
+            className={`pagination-btn ${currentPage === index + 1 ? "active" : ""}`}
           >
             {index + 1}
           </button>

@@ -90,12 +90,11 @@ const Cards = ({ onAddToCart }) => {
                   ({product.reviews?.length || 0})
                 </span>
               </div>
-              {/* Add to Cart Button */}
               <button
                 className="add-to-cart-btn"
                 onClick={(e) => {
-                  e.stopPropagation(); // Prevent card click
-                  addToCart(product); // Cart mein product add karo
+                  e.stopPropagation(); 
+                  addToCart(product); 
                 }}
               >
                 Add to Cart

@@ -14,7 +14,8 @@ const Category = () => {
   }, []);
 
   const handleCategoryClick = (categoryName) => {
-    navigate(`/category/${categoryName}`);
+    // Ensure this matches the route defined in App.js
+    navigate(`/Product/category/${categoryName}`);
   };
 
   return (
@@ -25,7 +26,7 @@ const Category = () => {
           <div 
             key={category._id} 
             className="category-card" 
-            onClick={() => handleCategoryClick(category.name)}
+            onClick={() => handleCategoryClick(category.name.toLowerCase())}
           >
             <img src={category.image} alt={category.name} className="cat-img" />
             <div className="cat-heading">{category.name}</div>

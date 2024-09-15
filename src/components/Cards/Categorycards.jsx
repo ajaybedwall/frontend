@@ -3,19 +3,20 @@ import { useParams } from 'react-router-dom';
 import './CategoryCards.css'; 
 
 const CategoryCards = () => {
-  const { categoryName } = useParams();
+  // Change 'categoryName' to 'category' to match the route parameter in App.js
+  const { category } = useParams();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/all/products/category/${categoryName}`)
+    fetch(`http://localhost:3000/all/products/category/${category}`)
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error('Error fetching product data:', error));
-  }, [categoryName]);
+  }, [category]);
 
   return (
     <>
-      <h2>{categoryName} Products</h2>
+      <h2>{category} Products</h2>
       <div className="product-container">
         {products.map((product) => (
           <div key={product._id} className="product-card">

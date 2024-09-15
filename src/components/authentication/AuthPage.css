@@ -3,9 +3,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   min-height: 100vh;
-  background-color: #fff; /* Set the background to white */
+  background-color: #2b632067; 
   padding: 20px;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
 }
 
 .signup-container {
@@ -150,13 +154,17 @@ p a:hover {
 }
 
 /* Main login container styles */
-.login-container {
+.login-container  {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #fff; /* White background */
+  width: 100%;
+  background-color: #ffffff7b; /* White background */
   padding: 20px;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
 }
 
 .login-form {
@@ -167,6 +175,7 @@ p a:hover {
   max-width: 400px;
   width: 100%;
   position: relative;
+  
 }
 
 /* Close button styling */

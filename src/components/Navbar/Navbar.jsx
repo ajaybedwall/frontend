@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-  FaRegUser,
-  FaPhone,
-  FaShoppingCart,
-  FaBars,
-  FaTimes,
-} from "react-icons/fa";
+import { FaRegUser, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa6";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import Trolley from "../../assets/trolley.png";
@@ -20,7 +15,6 @@ const Navbar = ({ cartItems }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -84,9 +78,9 @@ const Navbar = ({ cartItems }) => {
       {/* Sticky navbar */}
       <div className={`navbar ${isSticky ? "sticky" : ""}`}>
         <div className="navbar-left">
-          <div className="navbar-button">
+          <div className="navbar-button logo">
             <img src={Trolley} alt="icon" className="nav-icon" />
-            ShopCart
+            <span> ShopCart</span>
           </div>
         </div>
         <div className="navbar-middle">
@@ -120,7 +114,7 @@ const Navbar = ({ cartItems }) => {
           </div>
 
           {isLoggedIn ? (
-            <div className="navbar-button dropdown-container">
+            <div className="navbar-button user-account dropdown-container">
               <span className="arrow">
                 <FaRegUser /> {userName} <IoIosArrowDown />
               </span>
@@ -134,7 +128,7 @@ const Navbar = ({ cartItems }) => {
               </div>
             </div>
           ) : (
-            <div className="navbar-button">
+            <div className="navbar-button user-account">
               <span className="arrow">
                 <FaRegUser /> <Link to="/login">Account</Link>
               </span>
@@ -159,17 +153,29 @@ const Navbar = ({ cartItems }) => {
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <h2>Menu</h2>
-          <FaTimes onClick={() => setIsSidebarOpen(false)} className="close-btn" />
+          <FaTimes
+            onClick={() => setIsSidebarOpen(false)}
+            className="close-btn"
+          />
         </div>
         <div className="sidebar-content">
           <div className="sidebar-button">
-            <IoIosArrowDown /> Categories
+            Categories
+            <IoIosArrowDown />
           </div>
           <div className="sidebar-button">Deals</div>
           <div className="sidebar-button">What&apos;s New</div>
           <div className="sidebar-button">Delivery</div>
           <div className="sidebar-button">
-            <FaRegUser /> <Link to="/login">Account</Link>
+            {isLoggedIn ? (
+              <>
+                <FaRegUser /> <Link to="/profile">{userName}</Link>
+              </>
+            ) : (
+              <Link to="/login">
+                <FaRegUser /> Account
+              </Link>
+            )}
           </div>
         </div>
       </div>

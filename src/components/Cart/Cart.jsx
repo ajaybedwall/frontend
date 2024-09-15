@@ -1,7 +1,8 @@
 import React from "react";
 import "./Cart.css";
 
-const Cart = ({ cartItems, onClose }) => {
+const Cart = ({ cartItems, onClose, onRemoveFromCart }) => {
+  
   return (
     <div className="cart">
       <div className="cart-header">

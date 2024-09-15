@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import SignupPage from "./components/authentication/SignUp";
 import LoginPage from "./components/authentication/Login";
-import Home from "./components/Home/Home";
+// import Home from "./components/Home/Home";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Category from "./components/category/Category";
 import HomeDes from "./components/Navbar/HomeDes";
@@ -67,7 +67,7 @@ const ConditionalContent = ({ onAddToCart }) => {
       <Routes>
         <Route path="/login" element={<GoogleAuthWrapper/>} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/Home" element={<Home />} />
+        {/* <Route path="/Home" element={<Home />} /> */}
         <Route path="/Product/:id" element={<ProductDetail />} />
         <Route path="/Product/category/:category" element={<CategoryCards />} />
       </Routes>

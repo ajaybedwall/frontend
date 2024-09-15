@@ -44,7 +44,7 @@ const ProductDetail = () => {
         <p>Price: ${product.price.toFixed(2)}</p>
         <p>Rating: ⭐ {product.rating}</p>
         <p>Stock: {product.stock}</p>
-        <button className="add-to-cart-btn">Add to Cart</button>
+        <button className="add-to-cart-btn-d">Add to Cart</button>
       </div>
     </div>
   );

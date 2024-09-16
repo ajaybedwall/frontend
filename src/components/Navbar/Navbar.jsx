@@ -150,6 +150,7 @@ const Navbar = ({ cartItems }) => {
       </div>
 
       {/* Sidebar */}
+      {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <h2>Menu</h2>
@@ -166,10 +167,16 @@ const Navbar = ({ cartItems }) => {
           <div className="sidebar-button">Deals</div>
           <div className="sidebar-button">What&apos;s New</div>
           <div className="sidebar-button">Delivery</div>
+
+          {/* Account Section */}
           <div className="sidebar-button">
             {isLoggedIn ? (
               <>
                 <FaRegUser /> <Link to="/profile">{userName}</Link>
+                {/* Logout button displayed below the Account */}
+                <button className="sidebar-logout" onClick={handleLogout}>
+                  Logout
+                </button>
               </>
             ) : (
               <Link to="/login">

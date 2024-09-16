@@ -110,7 +110,8 @@
     .nav-1 {
         display: none;
     }
-    .navbar-left .logo span{
+    
+    .navbar-left .logo span {
         display: none;
     }
 
@@ -120,8 +121,8 @@
         width: 100%;
     }
 
-    .menu-items, .navbar-button {
-        display: none;
+    .menu-items, .navbar-button, .navbar-button.user-account {
+        display: none; /* Hide the account button */
     }
 
     .search-box {
@@ -255,6 +256,25 @@
     font-size: 1rem;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.sidebar-logout {
+  background-color: #ffffff;
+  color: #184328;
+  border: 1px solid #ddd;
+  padding: 5px;
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-logout:hover {
+  background-color: #f1f1f1;
 }
 
 /* Overlay */

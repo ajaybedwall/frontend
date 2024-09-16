@@ -40,6 +40,7 @@ function LoginPage() {
         localStorage.setItem("token", jwtToken);
         localStorage.setItem("loggedInUser", name);
         setTimeout(() => navigate("/"), 1000);
+        window.location.href="/";
       } else {
         handleError(error?.details?.[0]?.message || message || "Login failed");
       }

@@ -59,6 +59,9 @@
     color: #000000;
     margin: 5px 15px;
 }
+.menu-item:hover{
+    cursor: pointer;
+}
 
 .search-box {
     position: relative;

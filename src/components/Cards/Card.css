@@ -14,6 +14,10 @@
   display: flex;
   flex-direction: column;
 }
+.card-h{
+  display: flex;
+  justify-content: space-between;
+}
 
 .card:hover {
   transform: translateY(-5px);
@@ -23,8 +27,8 @@
 
 
 .card-image img {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 60%;
   object-fit: cover;
 }
 
@@ -65,10 +69,12 @@
 
 .card-rating .stars {
   margin-right: 5px;
+  margin-top: 0px;
 }
 
 .card-rating .reviews {
   color: #6c757d; /* Gray color for reviews */
+  margin-top: 0px;
 }
 
 .add-to-cart-btn {

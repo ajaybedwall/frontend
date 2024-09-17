@@ -7,7 +7,7 @@ import Trolley from "../../assets/trolley.png";
 import "./Navbar.css";
 import Cart from "../Cart/Cart"; // Ensure this path is correct
 
-const Navbar = ({ cartItems }) => {
+const Navbar = ({ cartItems, onWhatsNewClick, onCategoryClick, onDealsClick }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const [isSearchActive, setIsSearchActive] = useState(false);
@@ -85,18 +85,22 @@ const Navbar = ({ cartItems }) => {
         </div>
         <div className="navbar-middle">
           <div className="menu-items">
-            <Link to="/categories" className="menu-item">
+            {/* Trigger scroll to "Categories" section */}
+            <span className="menu-item" onClick={onCategoryClick}>
               Categories
-            </Link>
-            <Link to="/deals" className="menu-item">
+            </span>
+
+            {/* Trigger scroll to "Deals" section */}
+            <span className="menu-item" onClick={onDealsClick}>
               Deals
-            </Link>
-            <Link to="/whats-new" className="menu-item">
+            </span>
+
+            {/* Trigger scroll to "What's New" section */}
+            <span className="menu-item" onClick={onWhatsNewClick}>
               What&apos;s New
-            </Link>
-            <Link to="/delivery" className="menu-item">
-              Delivery
-            </Link>
+            </span>
+
+            
           </div>
 
           <div className="nav2-search">
@@ -150,7 +154,6 @@ const Navbar = ({ cartItems }) => {
       </div>
 
       {/* Sidebar */}
-      {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <h2>Menu</h2>
@@ -160,20 +163,22 @@ const Navbar = ({ cartItems }) => {
           />
         </div>
         <div className="sidebar-content">
-          <div className="sidebar-button">
+          <div className="sidebar-button" onClick={onCategoryClick}>
             Categories
             <IoIosArrowDown />
           </div>
-          <div className="sidebar-button">Deals</div>
-          <div className="sidebar-button">What&apos;s New</div>
-          <div className="sidebar-button">Delivery</div>
+          <div className="sidebar-button" onClick={onDealsClick}>
+            Deals
+          </div>
+          <div className="sidebar-button" onClick={onWhatsNewClick}>
+            What&apos;s New
+          </div>
 
           {/* Account Section */}
           <div className="sidebar-button">
             {isLoggedIn ? (
               <>
                 <FaRegUser /> <Link to="/profile">{userName}</Link>
-                {/* Logout button displayed below the Account */}
                 <button className="sidebar-logout" onClick={handleLogout}>
                   Logout
                 </button>

@@ -16,6 +16,7 @@ import HomeDes from "./components/Navbar/HomeDes";
 import Cards from "./components/Cards/Card";
 import ProductDetail from "./components/ProductDetails/ProductDetail";
 import CategoryCards from "./components/Cards/CategoryCards";
+import Whats from "./components/Footer/Whats";
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -36,6 +37,7 @@ const App = () => {
         <Navbar cartItems={cartItems} />
         <HomeDes />
         <ConditionalContent onAddToCart={handleAddToCart} />
+        <Whats/>
         <Footer />
         {/* <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} /> */}
       </div>

@@ -7,7 +7,7 @@ import Trolley from "../../assets/trolley.png";
 import "./Navbar.css";
 import Cart from "../Cart/Cart"; // Ensure this path is correct
 
-const Navbar = ({ cartItems }) => {
+const Navbar = ({ cartItems, toggleCart }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const [isSearchActive, setIsSearchActive] = useState(false);
@@ -139,7 +139,11 @@ const Navbar = ({ cartItems }) => {
           <div className="navbar-button" onClick={handleCartClick}>
             <span className="arrow">
               <FaShoppingCart />
-              <Link to={"/cart"}>Cart</Link> ({cartItems.length})
+              <Link to="/cart">
+                <button onClick={toggleCart} className="cart-button">
+                Cart ({cartItems.length})
+                </button>
+              </Link>
             </span>
           </div>
 
@@ -149,7 +153,6 @@ const Navbar = ({ cartItems }) => {
         </div>
       </div>
 
-      {/* Sidebar */}
       {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">

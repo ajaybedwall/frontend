@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Card.css";
-import { CartContext } from "../context/CartContext";
 
 const Cards = ({ onAddToCart }) => {
   const [products, setProducts] = useState([]);
@@ -10,8 +9,6 @@ const Cards = ({ onAddToCart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 8;
   const navigate = useNavigate();
-
-  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -50,7 +47,9 @@ const Cards = ({ onAddToCart }) => {
   }
 
   if (error) {
-    return <div className="error-message">Oops! Something went wrong: {error}</div>;
+    return (
+      <div className="error-message">Oops! Something went wrong: {error}</div>
+    );
   }
 
   return (
@@ -87,8 +86,7 @@ const Cards = ({ onAddToCart }) => {
                 className="add-to-cart-btn"
                 onClick={(e) => {
                   e.stopPropagation();
-                  console.log("Adding to cart: ", product);
-                  addToCart(product);
+                  onAddToCart(product);
                 }}
               >
                 Add to Cart
@@ -104,7 +102,9 @@ const Cards = ({ onAddToCart }) => {
           <button
             key={index}
             onClick={() => handlePageChange(index + 1)}
-            className={`pagination-btn ${currentPage === index + 1 ? "active" : ""}`}
+            className={`pagination-btn ${
+              currentPage === index + 1 ? "active" : ""
+            }`}
           >
             {index + 1}
           </button>

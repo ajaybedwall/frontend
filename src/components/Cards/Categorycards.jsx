@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./Card.css"; // Reuse the same CSS as the first component
+import "./Card.css";
 import { CartContext } from "../context/CartContext";
 
 const CategoryCards = () => {
@@ -11,13 +11,14 @@ const CategoryCards = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 8;
   const navigate = useNavigate();
-
-  const { addToCart } = useContext(CartContext);
+  // const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/all/products/category/${category}`);
+        const response = await fetch(
+          `http://localhost:3000/all/products/category/${category}`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -35,9 +36,13 @@ const CategoryCards = () => {
 
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = products.slice(indexOfFirstCard, indexOfFirstCard + cardsPerPage);
+  const currentCards = products.slice(
+    indexOfFirstCard,
+    indexOfFirstCard + cardsPerPage
+  );
 
   const totalPages = Math.ceil(products.length / cardsPerPage);
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -51,7 +56,9 @@ const CategoryCards = () => {
   }
 
   if (error) {
-    return <div className="error-message">Oops! Something went wrong: {error}</div>;
+    return (
+      <div className="error-message">Oops! Something went wrong: {error}</div>
+    );
   }
 
   return (
@@ -89,7 +96,6 @@ const CategoryCards = () => {
                 className="add-to-cart-btn"
                 onClick={(e) => {
                   e.stopPropagation();
-                  console.log("Adding to cart: ", product);
                   addToCart(product);
                 }}
               >
@@ -106,7 +112,9 @@ const CategoryCards = () => {
           <button
             key={index}
             onClick={() => handlePageChange(index + 1)}
-            className={`pagination-btn ${currentPage === index + 1 ? "active" : ""}`}
+            className={`pagination-btn ${
+              currentPage === index + 1 ? "active" : ""
+            }`}
           >
             {index + 1}
           </button>

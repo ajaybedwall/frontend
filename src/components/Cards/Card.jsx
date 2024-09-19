@@ -65,14 +65,16 @@ const Cards = ({ onAddToCart }) => {
               <img src={product.thumbnail} alt={product.title} loading="lazy" />
             </div>
             <div className="card-content">
-              <h2 className="card-title">{product.title}</h2>
-              <p className="card-price">
-                <span className="currency-symbol">$</span>
-                {Math.floor(product.price)}
-                <span className="decimal-part">
-                  {product.price.toFixed(2).slice(-3)}
-                </span>
-              </p>
+              <div className="card-h">
+                <h2 className="card-title">{product.title}</h2>
+                <p className="card-price">
+                  <span className="currency-symbol">$</span>
+                  {Math.floor(product.price)}
+                  <span className="decimal-part">
+                    {product.price.toFixed(2).slice(-3)}
+                  </span>
+                </p>
+              </div>
               <p className="card-description">{product.description}</p>
               <div className="card-rating">
                 <span className="stars">

@@ -1,7 +1,7 @@
 import  { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import { ToastContainer } from "react-toastify";
-import { useGoogleLogin } from "@react-oauth/google";
+// import { useGoogleLogin } from "@react-oauth/google";
 import { handleError, handleSuccess } from "./utils";
 // import "react-toastify/dist/ReactToastify.css";
 import "./AuthPage.css";
@@ -71,11 +71,11 @@ function LoginPage() {
     }
   };
 
-  const GoogleLogin = useGoogleLogin({
-    onSuccess: googleResponse,
-    onError: googleResponse,
-    flow: "auth-code",
-  });
+  // const GoogleLogin = useGoogleLogin({
+  //   onSuccess: googleResponse,
+  //   onError: googleResponse,
+  //   flow: "auth-code",
+  // });
 
   return (
     <div className="login-container">
@@ -122,7 +122,7 @@ function LoginPage() {
 
         <p className="or">OR</p>
 
-        <button className="but" onClick={GoogleLogin}>
+        <button className="but" >
           Login with Google
         </button>
 

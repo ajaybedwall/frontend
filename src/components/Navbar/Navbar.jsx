@@ -7,7 +7,7 @@ import Trolley from "../../assets/trolley.png";
 import "./Navbar.css";
 import Cart from "../Cart/Cart"; // Ensure this path is correct
 
-const Navbar = ({ cartItems, onWhatsNewClick, onCategoryClick, onDealsClick }) => {
+const Navbar = ({ cartItems,toggleCart ,onWhatsNewClick, onCategoryClick, onDealsClick }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const [isSearchActive, setIsSearchActive] = useState(false);
@@ -143,7 +143,11 @@ const Navbar = ({ cartItems, onWhatsNewClick, onCategoryClick, onDealsClick }) =
           <div className="navbar-button" onClick={handleCartClick}>
             <span className="arrow">
               <FaShoppingCart />
-              <Link to={"/cart"}>Cart</Link> ({cartItems.length})
+              <Link to="/cart">
+                <button onClick={toggleCart} className="cart-button">
+                Cart ({cartItems.length})
+                </button>
+              </Link>
             </span>
           </div>
 

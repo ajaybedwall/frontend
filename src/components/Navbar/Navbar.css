@@ -1,11 +1,12 @@
-/* General Styles */
 .nav-1 {
     display: flex;
     justify-content: space-between;
-    background-color: green;
     align-items: center;
-    padding: 5px 20px;
+    padding:0 10px;
+    background-color: #28a745; 
     color: white;
+    height: 40px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
 }
 
 .nav-icon {
@@ -16,6 +17,7 @@
 .shop-now p {
     font-size: 16px;
     white-space: nowrap;
+    color: white;
 }
 
 .arrow {
@@ -75,6 +77,8 @@
     width: 200px;
     cursor: pointer;
     padding: 5px 10px;
+    position: relative;
+    top: 10px;
 }
 
 .search-btn {
@@ -87,6 +91,7 @@
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
+    font-size: 25px;
 }
 
 .dropdown {
@@ -106,6 +111,13 @@
     gap: 10px;
     position: relative;
     bottom: 8px;
+}
+
+.cart-button{
+    background:transparent;
+    outline: none;
+    border: none;
+    font-size: 15px;
 }
 
 /* Mobile View */

@@ -114,7 +114,11 @@ const App = () => {
             onCategoryClick={scrollToCategory}
             onDealsClick={scrollToDeals}
           />
+
           {!isCheckout && <HomeDes />}
+          <div ref={categoryRef}>
+            <Category />
+          </div>
           <ConditionalContent
             cartItems={cartItems}
             onAddToCart={handleAddToCart}
@@ -132,9 +136,6 @@ const App = () => {
           )}
 
           {/* Add ref to the "Categories" section */}
-          <div ref={categoryRef}>
-            <Category />
-          </div>
 
           {/* Add ref to the "What's New" section */}
           <div ref={whatsNewRef}>

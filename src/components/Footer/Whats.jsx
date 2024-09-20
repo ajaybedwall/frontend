@@ -6,14 +6,13 @@ import third from "../../assets/home delivery-min.png"
 
 const Whats = () => {
     return (
-        <>
+        <div className='whats-main'>
             <div >
                 <div className="whats-header">
                     <h1>Services To Help You Shop</h1>
                 </div>
             </div>
             <div className="whats-container">
-                <div className="whats-content">
                     <div className="whats-card">
                         <div className="whats-card-header">
                             <h3>Frequently Asked Questions</h3>
@@ -41,10 +40,10 @@ const Whats = () => {
                             <img src={third} alt="Home Delivery Options" />
                         </div>
                     </div>
-                </div>
+                
             </div>
 
-        </>
+        </div>
     );
 };
 

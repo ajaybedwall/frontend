@@ -1,75 +1,82 @@
 .whats-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    flex-wrap: wrap;
-  }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three cards per row */
+  gap: 20px; /* Adjust gap as needed */
   
-  .whats-header {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-  }
- .whats-card-header{
-    font-size: large;
-    display: flex;
-    align-items: center;
-    justify-content: center;
- }
- @media (max-width: 320px){
-    .whats-card-header{
-        font-size: small;
-    }
-    .whats-card-body p{
-        font-size: 5px;
-    }
- }
- 
-  .whats-header h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-  }
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.whats-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   
-  .whats-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
+}
+
+.whats-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.whats-card-header {
+  font-size: large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .whats-container {
+      grid-template-columns: 1fr; /* Stack cards vertically */
   }
-  
-  .whats-card {
-    width: 30%;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
+}
+
+.whats-header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.whats-card {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.whats-card-header {
+  padding: 15px;
+  background-color: #f2f2f2;
+}
+
+.whats-card-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.whats-card-body p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.whats-card-body img {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+@media (max-width: 320px) {
   .whats-card-header {
-    padding: 15px;
-    background-color: #f2f2f2;
+      font-size: small;
   }
-  
-  .whats-card-header h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  /* .whats-card-body {
-    padding: 15px;
-  } */
-  
   .whats-card-body p {
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.5;
+      font-size: 12px; /* Adjust to a reasonable size */
   }
-  
-  .whats-card-body img {
-    width: 100%;
-    height: auto;
-    margin-top: 10px;
+  .whats-header h1 {
+      font-size: 1rem; /* Adjust to a reasonable size */
   }
+}
